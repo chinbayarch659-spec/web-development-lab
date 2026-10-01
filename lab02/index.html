@@ -39,6 +39,44 @@
 
             <label for="password">Нууц үг:</label><br>
             <input type="password" id="password" name="password" required minlength="6"><br><br>
+                      <!-- Хаягийн мэдээлэл -->
+          <fieldset>
+            <legend>Хаягийн мэдээлэл</legend>
+
+            <label for="aimag">Аймаг / Хот:</label><br>
+            <select id="aimag" name="aimag" required>
+              <option value="">-- Сонгоно уу --</option>
+              <option value="ulaanbaatar">Улаанбаатар</option>
+              <option value="arkhangai">Архангай</option>
+              <option value="bayan-ulgii">Баян-Өлгий</option>
+              <option value="bayankhongor">Баянхонгор</option>
+              <option value="bulgan">Булган</option>
+              <option value="govi-altai">Говь-Алтай</option>
+              <option value="govisumber">Говьсүмбэр</option>
+              <option value="darkhan-uul">Дархан-Уул</option>
+              <option value="dornogovi">Дорноговь</option>
+              <option value="dornod">Дорнод</option>
+              <option value="dundgovi">Дундговь</option>
+              <option value="zavkhan">Завхан</option>
+              <option value="orkhon">Орхон</option>
+              <option value="uvurkhangai">Өвөрхангай</option>
+              <option value="umnugovi">Өмнөговь</option>
+              <option value="sukhbaatar">Сүхбаатар</option>
+              <option value="selenge">Сэлэнгэ</option>
+              <option value="tuv">Төв</option>
+              <option value="uvs">Увс</option>
+              <option value="khovd">Ховд</option>
+              <option value="khuvsgul">Хөвсгөл</option>
+              <option value="khentii">Хэнтий</option>
+            </select><br><br>
+
+            <label for="sum">Сум / Дүүрэг:</label><br>
+            <input type="text" id="sum" name="sum" placeholder="Жишээ: Сүхбаатар дүүрэг" required minlength="2"><br><br>
+
+            <label for="address">Дэлгэрэнгүй хаяг:</label><br>
+            <textarea id="address" name="address" rows="3" cols="50" placeholder="Баг/хороо, гудамж, байрны дугаар..."></textarea><br>
+          </fieldset>
+          <br>
 
             <label for="phone">Утасны дугаар:</label><br>
             <input type="tel" id="phone" name="phone" pattern="[0-9]{8}" placeholder="95596203" required title="8 оронтой тоо оруулна уу"><br><br>
