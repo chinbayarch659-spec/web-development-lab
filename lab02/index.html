@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<!-- Repository: https://github.com/chinbayarch659-spec/web-development-lab -->
-<!-- Сайт: https://chinbayarch659-spec.github.io/web-development-lab/lab02/ -->
 <html lang="mn">
 <head>
   <meta charset="UTF-8">
@@ -8,9 +6,10 @@
   <title>Лаборатори 02: Хэрэглэгчийн анкет</title>
 </head>
 <body>
-
+  <!-- Вэбийн толгой хэсэг -->
   <header>
     <h1>Оюутны Бүртгэлийн Портал</h1>
+    <!-- Навигацийн цэс -->
     <nav>
       <ul>
         <li><a href="../index.html">Нүүр</a></li>
@@ -20,6 +19,7 @@
     </nav>
   </header>
 
+  <!-- Үндсэн контент -->
   <main>
     <article>
       <section>
@@ -27,29 +27,24 @@
         <p>Доорх формын дагуу мэдээллээ бүрэн, үнэн зөв зааж бөглөнө үү.</p>
 
         <form action="#" method="POST" enctype="multipart/form-data">
-
+          <!-- 1-р бүлэг: Хувийн мэдээлэл -->
           <fieldset>
             <legend>Хувийн мэдээлэл</legend>
 
             <label for="fullname">Овог нэр:</label><br>
-            <input type="text" id="fullname" name="fullname" placeholder="И. Болдбаатар"
-                   required minlength="2" maxlength="50"><br><br>
+            <input type="text" id="fullname" name="fullname" placeholder="Ц. Чинбаяр" required minlength="2"><br><br>
 
             <label for="email">Цахим хаяг (Email):</label><br>
-            <input type="email" id="email" name="email" placeholder="example@domain.com"
-                   required><br><br>
+            <input type="email" id="email" name="email" placeholder="example@domain.com" required><br><br>
 
             <label for="password">Нууц үг:</label><br>
-            <input type="password" id="password" name="password"
-                   required minlength="6"><br><br>
+            <input type="password" id="password" name="password" required minlength="6"><br><br>
 
             <label for="phone">Утасны дугаар:</label><br>
-            <input type="tel" id="phone" name="phone" pattern="[0-9]{8}"
-                   title="8 оронтой тоо оруулна уу (жишээ: 88112233)"
-                   placeholder="88112233" required><br><br>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{8}" placeholder="95596203" required title="8 оронтой тоо оруулна уу"><br><br>
 
             <label for="dob">Төрсөн огноо:</label><br>
-            <input type="date" id="dob" name="dob" max="2010-12-31" required><br><br>
+            <input type="date" id="dob" name="dob" required><br><br>
 
             <label>Хүйс:</label><br>
             <input type="radio" id="male" name="gender" value="male" required>
@@ -57,9 +52,9 @@
             <input type="radio" id="female" name="gender" value="female">
             <label for="female">Эмэгтэй</label><br>
           </fieldset>
-
           <br>
 
+          <!-- 2-р бүлэг: Боловсрол ба Сонирхол -->
           <fieldset>
             <legend>Боловсрол ба Сонирхол</legend>
 
@@ -68,7 +63,7 @@
               <option value="">-- Сонгоно уу --</option>
               <option value="bachelor">Бакалавр</option>
               <option value="master">Магистр</option>
-              <option value="doctor">Докторант</option>
+              <option value="doctor">Доктор</option>
             </select><br><br>
 
             <label>Сонирхож буй технологиуд:</label><br>
@@ -83,32 +78,31 @@
             <input type="file" id="avatar" name="avatar" accept="image/*"><br><br>
 
             <label for="bio">Товч танилцуулга / Өөрийн тухай:</label><br>
-            <textarea id="bio" name="bio" rows="4" cols="50" maxlength="300"
-                      placeholder="Өөрийн танилцуулгыг энд бичнэ үү..."></textarea><br>
+            <textarea id="bio" name="bio" rows="4" cols="50" placeholder="Өөрийн танилцуулгыг энд бичнэ үү..."></textarea><br>
           </fieldset>
-
           <br>
 
+          <!-- Илгээх ба Арилгах товчлуурууд -->
           <button type="submit">Анкет Илгээх</button>
           <button type="reset">Дахин эхлүүлэх</button>
-
         </form>
       </section>
     </article>
 
+    <!-- Сонирхлын жагсаалт -->
     <section>
       <h2>Миний сонирхол</h2>
       <ul>
         <li>Веб хөгжүүлэлт</li>
-        <li>Фото зураг авах</li>
+        <li>волебол</li>
         <li>Кино үзэх</li>
       </ul>
     </section>
 
+    <!-- Дүнгийн хүснэгт -->
     <section>
       <h2>Миний дүн</h2>
       <table>
-        <caption>Улирлын дүнгийн мэдээлэл</caption>
         <thead>
           <tr>
             <th>Хичээл</th>
@@ -118,32 +112,24 @@
         <tbody>
           <tr>
             <td>Веб зохиомж</td>
-            <td>95</td>
+            <td>90</td>
           </tr>
           <tr>
             <td>Мэдээллийн сан</td>
-            <td>88</td>
+            <td>100/td>
           </tr>
           <tr>
             <td>Алгоритм</td>
-            <td>92</td>
+            <td>100</td>
           </tr>
         </tbody>
       </table>
     </section>
-
-    <section>
-      <h2>Миний линкүүд</h2>
-      <ul>
-        <li>GitHub repository: <a href="https://github.com/chinbayarch659-spec/web-development-lab">https://github.com/chinbayarch659-spec/web-development-lab</a></li>
-        <li>GitHub Pages сайт: <a href="https://chinbayarch659-spec.github.io/web-development-lab/lab02/">https://chinbayarch659-spec.github.io/web-development-lab/lab02/</a></li>
-      </ul>
-    </section>
   </main>
 
+  <!-- Хөл хэсэг -->
   <footer>
     <p>&copy; 2026 Веб зохиомж хичээл. Бүх эрх хуулиар хамгаалагдсан.</p>
   </footer>
-
 </body>
 </html>
