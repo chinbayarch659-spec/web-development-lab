@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лаборатори 04: Flexbox ба Grid layout</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Manrope:wght@400;700&subset=cyrillic&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="lab4.css">
+</head>
+<body>
+  <!-- HEADER: Flexbox -->
+  <header class="site-header">
+    <h1 class="site-title">Оюутны Бүртгэлийн Портал</h1>
+    <nav aria-label="Үндсэн цэс">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="../index.html">Нүүр</a></li>
+        <li><a class="nav-link" href="#">Анкет засах</a></li>
+        <li><a class="nav-link" href="#">Тусламж</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- LAYOUT: Grid (үндсэн контент + sidebar) -->
+  <div class="layout">
+
+    <main class="page">
+      <article>
+        <section>
+          <h2 class="section-title">Хэрэглэгчийн Анкет Бөглөх</h2>
+          <p class="lead">Доорх формын дагуу мэдээллээ бүрэн, үнэн зөв зааж бөглөнө үү.</p>
+
+          <form action="#" method="POST" enctype="multipart/form-data">
+
+            <!-- Карт хэлбэрийн 3 баганатай Grid -->
+            <div class="form-grid">
+
+              <fieldset class="group">
+                <legend class="group-title">Хувийн мэдээлэл</legend>
+
+                <div class="field">
+                  <label class="label" for="fullname">Овог нэр:</label>
+                  <input class="input" type="text" id="fullname" name="fullname" placeholder="Ц. Чинбаяр" required minlength="2">
+                  <span class="badge">Заавал</span>
+                </div>
+
+                <div class="field">
+                  <label class="label" for="email">Цахим хаяг (Email):</label>
+                  <input class="input" type="email" id="email" name="email" placeholder="example@domain.com" required>
+                  <span class="badge">Заавал</span>
+                </div>
+
+                <div class="field">
+                  <label class="label" for="password">Нууц үг:</label>
+                  <input class="input" type="password" id="password" name="password" required minlength="6">
+                  <span class="badge">Заавал</span>
+                </div>
+
+                <div class="field">
+                  <label class="label" for="phone">
+                    Утасны дугаар:
+                    <span class="tooltip" tabindex="0" aria-label="Утасны дугаарын заавар">?
+                      <span class="tooltip-text" role="tooltip">8 оронтой тоо оруулна уу. Жишээ: 95596203</span>
+                    </span>
+                  </label>
+                  <input class="input" type="tel" id="phone" name="phone" pattern="[0-9]{8}" placeholder="95596203" required title="8 оронтой тоо оруулна уу">
+                  <span class="badge">Заавал</span>
+                </div>
+
+                <div class="field">
+                  <label class="label" for="dob">Төрсөн огноо:</label>
+                  <input class="input" type="date" id="dob" name="dob" required>
+                  <span class="badge">Заавал</span>
+                </div>
+
+                <div class="field">
+                  <span class="label">Хүйс:</span>
+                  <div class="choices">
+                    <label class="choice" for="male">
+                      <input type="radio" id="male" name="gender" value="male" required>
+                      Эрэгтэй
+                    </label>
+                    <label class="choice" for="female">
+                      <input type="radio" id="female" name="gender" value="female">
+                      Эмэгтэй
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="group">
+                <legend class="group-title">Хаягийн мэдээлэл</legend>
+
+                <div class="field">
+                  <label class="label" for="aimag">Аймаг / Хот:</label>
+                  <select class="select" id="aimag" name="aimag" required>
+                    <option value="">-- Сонгоно уу --</option>
+                    <option value="ulaanbaatar">Улаанбаатар</option>
+                    <option value="arkhangai">Архангай</option>
+                    <option value="bayan-ulgii">Баян-Өлгий</option>
+                    <option value="bayankhongor">Баянхонгор</option>
+                    <option value="bulgan">Булган</option>
+                    <option value="govi-altai">Говь-Алтай</option>
+                    <option value="govisumber">Говьсүмбэр</option>
+                    <option value="darkhan-uul">Дархан-Уул</option>
+                    <option value="dornogovi">Дорноговь</option>
+                    <option value="dornod">Дорнод</option>
+                    <option value="dundgovi">Дундговь</option>
+                    <option value="zavkhan">Завхан</option>
+                    <option value="orkhon">Орхон</option>
+                    <option value="uvurkhangai">Өвөрхангай</option>
+                    <option value="umnugovi">Өмнөговь</option>
+                    <option value="sukhbaatar">Сүхбаатар</option>
+                    <option value="selenge">Сэлэнгэ</option>
+                    <option value="tuv">Төв</option>
+                    <option value="uvs">Увс</option>
+                    <option value="khovd">Ховд</option>
+                    <option value="khuvsgul">Хөвсгөл</option>
+                    <option value="khentii">Хэнтий</option>
+                  </select>
+                  <span class="badge">Заавал</span>
+                </div>
+
+                <div class="field">
+                  <label class="label" for="sum">Сум / Дүүрэг:</label>
+                  <input class="input" type="text" id="sum" name="sum" placeholder="Жишээ: Сүхбаатар дүүрэг" required minlength="2">
+                  <span class="badge">Заавал</span>
+                </div>
+
+                <div class="field">
+                  <label class="label" for="address">Дэлгэрэнгүй хаяг:</label>
+                  <textarea class="textarea" id="address" name="address" rows="5" placeholder="Баг/хороо, гудамж, байрны дугаар..."></textarea>
+                </div>
+              </fieldset>
+
+              <fieldset class="group">
+                <legend class="group-title">Боловсрол ба Сонирхол</legend>
+
+                <div class="field">
+                  <label class="label" for="degree">Суралцаж буй түвшин:</label>
+                  <select class="select" id="degree" name="degree" required>
+                    <option value="">-- Сонгоно уу --</option>
+                    <option value="bachelor">Бакалавр</option>
+                    <option value="master">Магистр</option>
+                    <option value="doctor">Доктор</option>
+                  </select>
+                  <span class="badge">Заавал</span>
+                </div>
+
+                <div class="field">
+                  <span class="label">Сонирхож буй технологиуд:</span>
+                  <div class="choices">
+                    <label class="choice" for="html">
+                      <input type="checkbox" id="html" name="skills" value="HTML">
+                      HTML5 / CSS3
+                    </label>
+                    <label class="choice" for="js">
+                      <input type="checkbox" id="js" name="skills" value="JavaScript">
+                      JavaScript
+                    </label>
+                    <label class="choice" for="php">
+                      <input type="checkbox" id="php" name="skills" value="PHP">
+                      PHP &amp; MySQL
+                    </label>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="label" for="avatar">Профайл зураг оруулна уу:</label>
+                  <input class="input" type="file" id="avatar" name="avatar" accept="image/*">
+                </div>
+
+                <div class="field">
+                  <label class="label" for="bio">Товч танилцуулга / Өөрийн тухай:</label>
+                  <textarea class="textarea" id="bio" name="bio" rows="4" placeholder="Өөрийн танилцуулгыг энд бичнэ үү..."></textarea>
+                </div>
+              </fieldset>
+
+            </div>
+
+            <!-- Товчлуурууд: Flexbox -->
+            <div class="actions">
+              <button class="btn btn-primary" type="submit">Анкет Илгээх</button>
+              <button class="btn btn-secondary" type="reset">Дахин эхлүүлэх</button>
+            </div>
+          </form>
+        </section>
+      </article>
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" aria-label="Нэмэлт мэдээлэл">
+      <section class="card">
+        <h2 class="section-title">Миний сонирхол</h2>
+        <ul class="interest-list">
+          <li>Веб хөгжүүлэлт</li>
+          <li>Волейбол</li>
+          <li>Кино үзэх</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title">Миний дүн</h2>
+        <table class="grade-table">
+          <thead>
+            <tr>
+              <th>Хичээл</th>
+              <th>Дүн</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Веб зохиомж</td><td>90</td></tr>
+            <tr><td>Мэдээллийн сан</td><td>100</td></tr>
+            <tr><td>Алгоритм</td><td>100</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </aside>
+  </div>
+
+  <!-- FOOTER: Flexbox -->
+  <footer class="site-footer">
+    <p>&copy; 2026 Веб зохиомж хичээл. Бүх эрх хуулиар хамгаалагдсан.</p>
+    <ul class="footer-links">
+      <li><a href="../index.html">Нүүр</a></li>
+      <li><a href="#">Тусламж</a></li>
+    </ul>
+  </footer>
+</body>
+</html>

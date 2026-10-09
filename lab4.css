@@ -1,0 +1,290 @@
+/* ===== Токенууд ===== */
+:root {
+  --ink: #2b1417;
+  --ink-soft: #6b5557;
+  --paper: #f5eded;
+  --card: #ffffff;
+  --line: #e8d2d4;
+  --brand: #b3202a;
+  --brand-dark: #85151d;
+  --accent: #f2b134;
+  --danger: #85151d;
+  --radius: 10px;
+  --gap: 1.5rem;
+  --font-head: "Lora", Georgia, serif;
+  --font-body: "Manrope", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.6;
+  /* Хуудасны ерөнхий бүтэц: Grid (header / агуулга / footer) */
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+/* ===== HEADER + NAV: Flexbox ===== */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background: var(--brand);
+  color: #fff;
+  border-bottom: 4px solid var(--accent);
+}
+
+.site-title {
+  margin: 0;
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+}
+
+.nav-list {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+}
+.nav-link:hover,
+.nav-link:focus-visible {
+  background: var(--brand-dark);
+  outline: 2px solid var(--accent);
+}
+
+/* ===== LAYOUT: Grid (main + sidebar) ===== */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: var(--gap);
+  align-items: start;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.section-title {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-head);
+  font-size: 1.35rem;
+}
+.lead { margin: 0 0 1.5rem; color: var(--ink-soft); }
+
+/* ===== ФОРМ: карт хэлбэрийн 3 баганатай Grid ===== */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+  align-items: start;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+  margin: 0;
+  padding: 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--brand);
+  border-radius: var(--radius);
+}
+.group-title {
+  padding: 0 0.5rem;
+  font-family: var(--font-head);
+  font-weight: 700;
+  color: var(--brand);
+}
+
+.field {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+}
+.label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 1 0 100%;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.input, .select, .textarea {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.textarea { flex-basis: 100%; resize: vertical; }
+.input:focus, .select:focus, .textarea:focus {
+  outline: 2px solid var(--accent);
+  border-color: var(--brand);
+}
+
+.badge {
+  padding: 0.1rem 0.5rem;
+  font-size: 0.75rem;
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+}
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.2rem;
+  height: 1.2rem;
+  font-size: 0.75rem;
+  color: #fff;
+  background: var(--brand);
+  border-radius: 50%;
+  cursor: help;
+}
+.tooltip-text {
+  position: absolute;
+  bottom: 140%;
+  left: 50%;
+  width: 190px;
+  padding: 0.5rem;
+  transform: translateX(-50%);
+  font-weight: 400;
+  color: #fff;
+  background: var(--ink);
+  border-radius: 6px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 5;
+}
+.tooltip:hover .tooltip-text,
+.tooltip:focus .tooltip-text { visibility: visible; opacity: 1; }
+
+/* ===== Товчлуурууд: Flexbox ===== */
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.btn {
+  padding: 0.7rem 1.6rem;
+  font: inherit;
+  font-weight: 700;
+  border-radius: 6px;
+  border: 2px solid var(--brand);
+  cursor: pointer;
+}
+.btn-primary { color: #fff; background: var(--brand); }
+.btn-primary:hover { background: var(--brand-dark); }
+.btn-secondary { color: var(--brand); background: transparent; }
+.btn-secondary:hover { background: #fff; }
+.btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  position: sticky;
+  top: 1rem;
+}
+.card {
+  padding: 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.interest-list { margin: 0; padding-left: 1.2rem; }
+
+.grade-table { width: 100%; border-collapse: collapse; }
+.grade-table th, .grade-table td {
+  padding: 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+.grade-table th:last-child, .grade-table td:last-child { text-align: right; }
+.grade-table th { color: var(--brand); }
+
+/* ===== FOOTER: Flexbox ===== */
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  color: #fff;
+  background: var(--ink);
+}
+.site-footer p { margin: 0; }
+.footer-links {
+  display: flex;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.footer-links a { color: var(--accent); }
+
+/* ===== Responsive ===== */
+@media (max-width: 1100px) {
+  .form-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; padding: 1rem; }
+  .sidebar {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .site-header, .site-footer { padding: 1rem; justify-content: center; text-align: center; }
+  .nav-list { justify-content: center; }
+}
