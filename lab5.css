@@ -1,0 +1,486 @@
+/* =========================================================
+   Лаб 5: Mobile-First Responsive
+   Үндсэн (суурь) стиль = гар утас (< 768px)
+   @media (min-width: 768px)  = Tablet
+   @media (min-width: 1024px) = Desktop
+   @media (min-width: 1280px) = Том дэлгэцтэй Desktop
+   ========================================================= */
+
+/* ===== Токенууд ===== */
+:root {
+  --ink: #2b1417;
+  --ink-soft: #6b5557;
+  --paper: #f5eded;
+  --card: #ffffff;
+  --line: #e8d2d4;
+  --brand: #b3202a;
+  --brand-dark: #85151d;
+  --accent: #f2b134;
+  --danger: #85151d;
+  --radius: 10px;
+  --gap: 1rem;
+  --font-head: "Lora", Georgia, serif;
+  --font-body: "Manrope", system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+img, svg, video { max-width: 100%; height: auto; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+  /* Хуудасны ерөнхий бүтэц: Grid (header / агуулга / footer) */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
+}
+
+/* ===== HEADER + NAV (Mobile): Flexbox ===== */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--brand);
+  color: #fff;
+  border-bottom: 4px solid var(--accent);
+}
+
+.site-title {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--font-head);
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+
+/* Hamburger товч */
+.nav-toggle {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 0.6rem;
+  font: inherit;
+  font-weight: 700;
+  color: #fff;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.bars { display: flex; flex-direction: column; gap: 5px; }
+.nav-toggle-text { display: none; }   /* утсанд зөвхөн дүрс, таблетад бичигтэй */
+.nav-toggle:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #fff;
+  transition: transform 0.2s, opacity 0.2s;
+}
+.nav-toggle[aria-expanded="true"] .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .bar:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Цэс: гар утсанд нуугдсан, товч дарахад босоо жагсаалтаар нээгдэнэ */
+.main-nav { display: none; flex: 1 0 100%; }
+.main-nav.is-open { display: block; }
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.nav-link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+}
+.nav-link:hover,
+.nav-link:focus-visible {
+  background: var(--brand-dark);
+  outline: 2px solid var(--accent);
+}
+
+/* ===== LAYOUT (Mobile): 1 багана ===== */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.section-title {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+}
+.lead { margin: 0 0 1.25rem; color: var(--ink-soft); }
+
+/* ===== ФОРМ (Mobile): карт бүр нэг баганаар ===== */
+.form-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--gap);
+  align-items: start;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+  margin: 0;
+  padding: 1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--brand);
+  border-radius: var(--radius);
+}
+.group-title {
+  padding: 0 0.5rem;
+  font-family: var(--font-head);
+  font-weight: 700;
+  color: var(--brand);
+}
+
+.field {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  min-width: 0;
+}
+.label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 1 0 100%;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.input, .select, .textarea {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 44px;               /* хуруугаар дарахад тохиромжтой хэмжээ */
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+  font-size: 1rem;                /* iOS дээр автоматаар zoom хийхээс сэргийлнэ */
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.textarea { flex-basis: 100%; min-height: 0; resize: vertical; }
+.input:focus, .select:focus, .textarea:focus {
+  outline: 2px solid var(--accent);
+  border-color: var(--brand);
+}
+
+.badge {
+  padding: 0.1rem 0.5rem;
+  font-size: 0.75rem;
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.25rem;
+}
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  cursor: pointer;
+}
+.choice input { flex: none; width: 1.25rem; height: 1.25rem; margin: 0; }
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  font-size: 0.8rem;
+  color: #fff;
+  background: var(--brand);
+  border-radius: 50%;
+  cursor: help;
+}
+.tooltip-text {
+  position: absolute;
+  bottom: 140%;
+  left: 50%;
+  width: min(190px, 60vw);
+  padding: 0.5rem;
+  transform: translateX(-50%);
+  font-weight: 400;
+  color: #fff;
+  background: var(--ink);
+  border-radius: 6px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 5;
+}
+.tooltip:hover .tooltip-text,
+.tooltip:focus .tooltip-text { visibility: visible; opacity: 1; }
+
+/* ===== Товчлуурууд (Mobile): босоо, бүтэн өргөн ===== */
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+.btn {
+  min-height: 48px;
+  padding: 0.7rem 1.6rem;
+  font: inherit;
+  font-weight: 700;
+  border-radius: 6px;
+  border: 2px solid var(--brand);
+  cursor: pointer;
+}
+.btn-primary { color: #fff; background: var(--brand); }
+.btn-primary:hover { background: var(--brand-dark); }
+.btn-secondary { color: var(--brand); background: transparent; }
+.btn-secondary:hover { background: #fff; }
+.btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* ===== SIDEBAR (Mobile): формын доор, нэг баганаар ===== */
+.sidebar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--gap);
+}
+.card {
+  min-width: 0;
+  padding: 1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.interest-list { margin: 0; padding-left: 1.2rem; }
+
+.grade-table { width: 100%; border-collapse: collapse; }
+.grade-table th, .grade-table td {
+  padding: 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+.grade-table th:last-child, .grade-table td:last-child { text-align: right; }
+.grade-table th { color: var(--brand); }
+
+/* ===== FOOTER (Mobile): босоо, төвд ===== */
+.site-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  text-align: center;
+  color: #fff;
+  background: var(--ink);
+}
+.site-footer p { margin: 0; }
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.footer-links a {
+  display: inline-block;
+  padding: 0.5rem 0;
+  color: var(--accent);
+}
+
+/* =========================================================
+   TABLET: 768px ба түүнээс дээш
+   ========================================================= */
+@media (min-width: 768px) {
+  .site-header { padding: 1rem 2rem; }
+  .site-title { flex: 0 1 auto; font-size: 1.5rem; }
+
+  .layout { gap: 2rem; padding: 1.5rem 2rem; }
+  .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+  .group { padding: 1.25rem; }
+
+  .actions { flex-direction: row; justify-content: center; align-items: center; gap: 1rem; }
+  .btn { min-height: 0; }
+
+  .sidebar { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+  .card { padding: 1.25rem; }
+
+  .site-footer {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    text-align: left;
+  }
+  .footer-links { gap: 1.25rem; }
+}
+
+/* =========================================================
+   ЦЭС 2: ТАБЛЕТ (768px – 1023px)
+   "Цэс" бичигтэй товч, дарахад баруун дээд буланд popover гарна
+   ========================================================= */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .site-header { position: relative; }
+  .nav-toggle { padding: 0 1rem; border-radius: 999px; }
+  .nav-toggle-text { display: inline; }
+  .main-nav {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 2rem;
+    z-index: 10;
+    width: 240px;
+    padding: 0.5rem;
+    background: var(--ink);
+    border: 2px solid var(--accent);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* =========================================================
+   DESKTOP: 1024px ба түүнээс дээш
+   Sidebar баруун талд гарна
+   ========================================================= */
+@media (min-width: 1024px) {
+  /* ЦЭС 3: КОМПЬЮТЕР: товч байхгүй, цэс хэвтээ жагсаалтаар үргэлж харагдана */
+  .nav-toggle { display: none; }
+  .main-nav,
+  .main-nav.is-open { display: block; flex: 0 0 auto; }
+  .nav-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .nav-link { min-height: 0; }
+
+  .layout { grid-template-columns: minmax(0, 1fr) 300px; padding: 2rem; }
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: sticky;
+    top: 1rem;
+  }
+}
+
+/* =========================================================
+   ТОМ DESKTOP: 1280px ба түүнээс дээш
+   Формын 3 карт нэг мөрөнд
+   ========================================================= */
+@media (min-width: 1280px) {
+  .form-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* =========================================================
+   ТӨХӨӨРӨМЖИЙН ХАРАГДАЦ: Утас / Таблет / Компьютер товч
+   ========================================================= */
+.device-bar {
+  display: none;
+  position: fixed;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  z-index: 100;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.35rem;
+  background: var(--ink);
+  border-radius: 999px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+.device-btn {
+  min-height: 40px;
+  padding: 0 1rem;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.device-btn:hover { background: var(--brand-dark); }
+.device-btn[aria-pressed="true"] { color: var(--ink); background: var(--accent); }
+.device-btn:focus-visible { outline: 3px solid #fff; outline-offset: 1px; }
+
+/* Урьдчилан харах хэсэг: iframe-ийн өргөнийг JS тохируулна */
+.device-stage { display: none; }
+.device-frame {
+  max-width: 100%;
+  height: calc(100vh - 6.5rem);
+  min-height: 420px;
+  background: #fff;
+  border: 0;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+body.is-preview .site-header,
+body.is-preview .layout,
+body.is-preview .site-footer { display: none; }
+body.is-preview .device-stage {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem 1rem 5.5rem;
+  background: #d9d2d3;
+}
+body.is-preview .device-bar { display: flex; }
+
+/* Самбар нь жижиг дэлгэц дээр шаардлагагүй тул 768px-ээс дээш үед л харагдана */
+@media (min-width: 768px) {
+  .device-bar { display: flex; }
+  html:not(.in-frame) .site-footer { padding-bottom: 4.5rem; }
+}
+html.in-frame .device-bar { display: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
