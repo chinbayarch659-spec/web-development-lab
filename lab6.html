@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лаборатори 06: Responsive вэб хуудас</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Manrope:wght@400;700&subset=cyrillic&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="lab5.css">
+  <link rel="stylesheet" href="lab6.css">
+  <script>
+    // Урьдчилан харах iframe дотор нээгдсэн бол харагдац сонгох самбарыг нуух
+    if (window.self !== window.top) document.documentElement.classList.add('in-frame');
+    // Хадгалсан dark/light сэдвийг хуудас зурагдахаас өмнө хэрэглэнэ
+    try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+</head>
+<body>
+  <!-- HEADER: Flexbox + гар утсанд зориулсан hamburger цэс -->
+  <header class="site-header">
+    <h1 class="site-title">Оюутны Бүртгэлийн Портал</h1>
+
+    <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Харанхуй горим">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M12 3a9 9 0 0 0 0 18z"/>
+      </svg>
+    </button>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Цэс нээх">
+      <span class="bars">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </span>
+      <span class="nav-toggle-text">Цэс</span>
+    </button>
+
+    <nav class="main-nav" id="main-nav" aria-label="Үндсэн цэс">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="../index.html">Нүүр</a></li>
+        <li><a class="nav-link" href="#">Анкет засах</a></li>
+        <li><a class="nav-link" href="#">Тусламж</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- LAYOUT: Grid (үндсэн контент + sidebar) -->
+  <div class="layout">
+
+    <main class="page">
+      <article>
+        <section>
+          <h2 class="section-title">Хэрэглэгчийн Анкет Бөглөх</h2>
+          <p class="lead">Доорх формын дагуу мэдээллээ бүрэн, үнэн зөв зааж бөглөнө үү.</p>
+
+          <form action="#" method="POST" enctype="multipart/form-data">
+
+            <!-- Карт хэлбэрийн Grid: 1 / 2 / 3 багана -->
+            <div class="form-grid">
+
+              <fieldset class="group">
+                <legend class="group-title">Хувийн мэдээлэл</legend>
+
+                <div class="field">
+                  <label class="label" for="fullname">Овог нэр:</label>
+                  <input class="input" type="text" id="fullname" name="fullname" placeholder="Ц. Чинбаяр" required minlength="2">
+                  <span class="badge">Заавал</span>
+                </div>
+
+                <div class="field">
+                  <label class="label" for="email">Цахим хаяг (Email):</label>
+                  <input class="input" type="email" id="email" name="email" placeholder="example@domain.com" required>
+                  <span class="badge">Заавал</span>
+                </div>
+
+                <div class="field">
+                  <label class="label" for="password">Нууц үг:</label>
+                  <input class="input" type="password" id="password" name="password" required minlength="6">
+                  <span class="badge">Заавал</span>
+                </div>
+
+                <div class="field">
+                  <label class="label" for="phone">
+                    Утасны дугаар:
+                    <span class="tooltip" tabindex="0" aria-label="Утасны дугаарын заавар">?
+                      <span class="tooltip-text" role="tooltip">8 оронтой тоо оруулна уу. Жишээ: 95596203</span>
+                    </span>
+                  </label>
+                  <input class="input" type="tel" id="phone" name="phone" pattern="[0-9]{8}" placeholder="95596203" required title="8 оронтой тоо оруулна уу">
+                  <span class="badge">Заавал</span>
+                </div>
+
+                <div class="field">
+                  <label class="label" for="dob">Төрсөн огноо:</label>
+                  <input class="input" type="date" id="dob" name="dob" required>
+                  <span class="badge">Заавал</span>
+                </div>
+
+                <div class="field">
+                  <span class="label">Хүйс:</span>
+                  <div class="choices">
+                    <label class="choice" for="male">
+                      <input type="radio" id="male" name="gender" value="male" required>
+                      Эрэгтэй
+                    </label>
+                    <label class="choice" for="female">
+                      <input type="radio" id="female" name="gender" value="female">
+                      Эмэгтэй
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="group">
+                <legend class="group-title">Хаягийн мэдээлэл</legend>
+
+                <div class="field">
+                  <label class="label" for="aimag">Аймаг / Хот:</label>
+                  <select class="select" id="aimag" name="aimag" required>
+                    <option value="">-- Сонгоно уу --</option>
+                    <option value="ulaanbaatar">Улаанбаатар</option>
+                    <option value="arkhangai">Архангай</option>
+                    <option value="bayan-ulgii">Баян-Өлгий</option>
+                    <option value="bayankhongor">Баянхонгор</option>
+                    <option value="bulgan">Булган</option>
+                    <option value="govi-altai">Говь-Алтай</option>
+                    <option value="govisumber">Говьсүмбэр</option>
+                    <option value="darkhan-uul">Дархан-Уул</option>
+                    <option value="dornogovi">Дорноговь</option>
+                    <option value="dornod">Дорнод</option>
+                    <option value="dundgovi">Дундговь</option>
+                    <option value="zavkhan">Завхан</option>
+                    <option value="orkhon">Орхон</option>
+                    <option value="uvurkhangai">Өвөрхангай</option>
+                    <option value="umnugovi">Өмнөговь</option>
+                    <option value="sukhbaatar">Сүхбаатар</option>
+                    <option value="selenge">Сэлэнгэ</option>
+                    <option value="tuv">Төв</option>
+                    <option value="uvs">Увс</option>
+                    <option value="khovd">Ховд</option>
+                    <option value="khuvsgul">Хөвсгөл</option>
+                    <option value="khentii">Хэнтий</option>
+                  </select>
+                  <span class="badge">Заавал</span>
+                </div>
+
+                <div class="field">
+                  <label class="label" for="sum">Сум / Дүүрэг:</label>
+                  <input class="input" type="text" id="sum" name="sum" placeholder="Жишээ: Сүхбаатар дүүрэг" required minlength="2">
+                  <span class="badge">Заавал</span>
+                </div>
+
+                <div class="field">
+                  <label class="label" for="address">Дэлгэрэнгүй хаяг:</label>
+                  <textarea class="textarea" id="address" name="address" rows="5" placeholder="Баг/хороо, гудамж, байрны дугаар..."></textarea>
+                </div>
+              </fieldset>
+
+              <fieldset class="group">
+                <legend class="group-title">Боловсрол ба Сонирхол</legend>
+
+                <div class="field">
+                  <label class="label" for="degree">Суралцаж буй түвшин:</label>
+                  <select class="select" id="degree" name="degree" required>
+                    <option value="">-- Сонгоно уу --</option>
+                    <option value="bachelor">Бакалавр</option>
+                    <option value="master">Магистр</option>
+                    <option value="doctor">Доктор</option>
+                  </select>
+                  <span class="badge">Заавал</span>
+                </div>
+
+                <div class="field">
+                  <span class="label">Сонирхож буй технологиуд:</span>
+                  <div class="choices">
+                    <label class="choice" for="html">
+                      <input type="checkbox" id="html" name="skills" value="HTML">
+                      HTML5 / CSS3
+                    </label>
+                    <label class="choice" for="js">
+                      <input type="checkbox" id="js" name="skills" value="JavaScript">
+                      JavaScript
+                    </label>
+                    <label class="choice" for="php">
+                      <input type="checkbox" id="php" name="skills" value="PHP">
+                      PHP &amp; MySQL
+                    </label>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="label" for="avatar">Профайл зураг оруулна уу:</label>
+                  <input class="input" type="file" id="avatar" name="avatar" accept="image/*">
+                </div>
+
+                <div class="field">
+                  <label class="label" for="bio">Товч танилцуулга / Өөрийн тухай:</label>
+                  <textarea class="textarea" id="bio" name="bio" rows="4" placeholder="Өөрийн танилцуулгыг энд бичнэ үү..."></textarea>
+                </div>
+              </fieldset>
+
+            </div>
+
+            <!-- Товчлуурууд: Flexbox -->
+            <div class="actions">
+              <button class="btn btn-primary" type="submit">Анкет Илгээх</button>
+              <button class="btn btn-secondary" type="reset">Дахин эхлүүлэх</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- ЛАБ 6: 3D flip карт, SVG, video, iframe -->
+        <section class="showcase" aria-labelledby="show-title">
+          <h2 class="section-title" id="show-title">Хүртээмжтэй эффект ба медиа</h2>
+
+          <h3 class="sub-title">3D flip карт</h3>
+          <p class="lead">Карт дээр дарж эсвэл Enter / Space дарж эргүүлнэ.</p>
+          <ul class="flip-grid stagger">
+            <li class="flip" style="--i:0">
+              <button class="flip-btn" type="button" aria-pressed="false">
+                <span class="flip-inner">
+                  <span class="flip-face flip-front"><strong>HTML5 / CSS3</strong><small>Эргүүлэх</small></span>
+                  <span class="flip-face flip-back">Хуудасны бүтэц, загвар, responsive зохиомж</span>
+                </span>
+              </button>
+            </li>
+            <li class="flip" style="--i:1">
+              <button class="flip-btn" type="button" aria-pressed="false">
+                <span class="flip-inner">
+                  <span class="flip-face flip-front"><strong>JavaScript</strong><small>Эргүүлэх</small></span>
+                  <span class="flip-face flip-back">Хуудсыг амьдруулж, хэрэглэгчийн үйлдэлд хариу өгнө</span>
+                </span>
+              </button>
+            </li>
+            <li class="flip" style="--i:2">
+              <button class="flip-btn" type="button" aria-pressed="false">
+                <span class="flip-inner">
+                  <span class="flip-face flip-front"><strong>PHP &amp; MySQL</strong><small>Эргүүлэх</small></span>
+                  <span class="flip-face flip-back">Серверийн тал, өгөгдлийн сантай ажиллана</span>
+                </span>
+              </button>
+            </li>
+          </ul>
+
+          <h3 class="sub-title">Inline SVG диаграм</h3>
+          <figure class="media">
+            <svg class="chart" viewBox="0 0 240 124" role="img" aria-labelledby="chart-t chart-d">
+              <title id="chart-t">Миний дүнгийн диаграм</title>
+              <desc id="chart-d">Веб зохиомж 90, Мэдээллийн сан 100, Алгоритм 100 оноотой.</desc>
+              <rect class="bar-rect" style="--i:0" x="25" y="21" width="50" height="81"/>
+              <rect class="bar-rect" style="--i:1" x="95" y="12" width="50" height="90"/>
+              <rect class="bar-rect" style="--i:2" x="165" y="12" width="50" height="90"/>
+              <text x="50" y="16" text-anchor="middle">90</text>
+              <text x="120" y="8" text-anchor="middle">100</text>
+              <text x="190" y="8" text-anchor="middle">100</text>
+              <text x="50" y="118" text-anchor="middle">Веб</text>
+              <text x="120" y="118" text-anchor="middle">Сан</text>
+              <text x="190" y="118" text-anchor="middle">Алгор.</text>
+            </svg>
+            <figcaption>Хичээл тус бүрийн дүн (дээд оноо 100).</figcaption>
+          </figure>
+
+          
+          <h3 class="sub-title">Хичээлийн видео (YouTube)</h3>
+          <figure class="media">
+            <div class="embed">
+              <iframe
+                title="Static vebsyte hiih arga, YouTube видео"
+                src="https://www.youtube-nocookie.com/embed/kVqTxoO24G0"
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+                sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"
+                allow="fullscreen"
+                allowfullscreen></iframe>
+            </div>
+            <figcaption>Дээрх 3D flip картын тухай заавар. <a href="https://www.youtube.com/watch?v=SdC0DDdT_rM">YouTube дээр нээх</a></figcaption>
+          </figure>
+        </section>
+      </article>
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" aria-label="Нэмэлт мэдээлэл">
+      <section class="card">
+        <h2 class="section-title">Миний сонирхол</h2>
+        <ul class="interest-list stagger">
+          <li style="--i:0">Веб хөгжүүлэлт</li>
+          <li style="--i:1">Волейбол</li>
+          <li style="--i:2">Кино үзэх</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title">Миний дүн</h2>
+        <table class="grade-table">
+          <thead>
+            <tr>
+              <th>Хичээл</th>
+              <th>Дүн</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Веб зохиомж</td><td>90</td></tr>
+            <tr><td>Мэдээллийн сан</td><td>100</td></tr>
+            <tr><td>Алгоритм</td><td>100</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </aside>
+  </div>
+
+  <!-- FOOTER: Flexbox -->
+  <footer class="site-footer">
+    <p>&copy; 2026 Веб зохиомж хичээл. Бүх эрх хуулиар хамгаалагдсан.</p>
+    <ul class="footer-links">
+      <li><a href="../index.html">Нүүр</a></li>
+      <li><a href="#">Тусламж</a></li>
+    </ul>
+  </footer>
+
+  <!-- ТӨХӨӨРӨМЖИЙН ХАРАГДАЦ: Утас / Таблет / Компьютер -->
+  <div class="device-bar" role="group" aria-label="Харагдац сонгох">
+    <button class="device-btn" type="button" data-width="375" aria-pressed="false">Утас</button>
+    <button class="device-btn" type="button" data-width="768" aria-pressed="false">Таблет</button>
+    <button class="device-btn" type="button" data-width="full" aria-pressed="true">Компьютер</button>
+  </div>
+  <div class="device-stage">
+    <iframe class="device-frame" id="device-frame" title="Хуудасны урьдчилан харагдац"></iframe>
+  </div>
+
+  <script>
+    // Утас / Таблет дээрх цэсийн товчийг нээх / хаах
+    const toggle = document.querySelector('.nav-toggle');
+    const nav = document.getElementById('main-nav');
+
+    function setOpen(open) {
+      nav.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', open);
+      toggle.setAttribute('aria-label', open ? 'Цэс хаах' : 'Цэс нээх');
+    }
+
+    toggle.addEventListener('click', () => setOpen(!nav.classList.contains('is-open')));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+    document.addEventListener('click', e => {
+      if (!nav.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
+    });
+
+    // Харагдац сонгох: Утас (375px) / Таблет (768px) / Компьютер (бүтэн хуудас)
+    // Хуудсыг iframe-д нээснээр media query нь iframe-ийн өргөнөөр жинхэнээсээ ажиллана
+    const deviceBtns = document.querySelectorAll('.device-btn');
+    const frame = document.getElementById('device-frame');
+
+    deviceBtns.forEach(btn => btn.addEventListener('click', () => {
+      const width = btn.dataset.width;          // "375", "768" эсвэл "full"
+      const preview = width !== 'full';
+      document.body.classList.toggle('is-preview', preview);
+      if (preview) {
+        if (!frame.getAttribute('src')) frame.src = location.href.split('#')[0];
+        frame.style.width = width + 'px';
+      }
+      deviceBtns.forEach(b => b.setAttribute('aria-pressed', b === btn));
+      setOpen(false);
+    }));
+  </script>
+  <script src="lab6-effects.js"></script>
+</body>
+</html>

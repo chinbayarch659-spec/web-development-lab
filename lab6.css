@@ -1,0 +1,132 @@
+/* =========================================================
+   lab6-effects.css  (lab6.css-ийн ДАРАА холбоно)
+   ========================================================= */
+
+/* ===== 1. Design token + Dark mode ===== */
+:root {
+  color-scheme: light;
+  --brand-text: var(--brand);      /* бараан дэвсгэр дээрх улаан бичгийн өнгө */
+  --inverse: #2b1417;              /* footer, tooltip, popover-ийн дэвсгэр */
+  --on-accent: #2b1417;
+  --field-bg: #fff;
+  --shadow: rgba(43, 20, 23, 0.25);
+  --dur: 0.25s;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --stagger: 120ms;
+}
+/* Гараар сонгосон (data-theme) эсвэл OS-ийн тохиргоо (JS-гүй үед) */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #f3e6e7; --ink-soft: #c9b1b4; --paper: #1a1112; --card: #261a1c;
+  --line: #4a3336; --brand: #c0303a; --brand-dark: #8f1f27;
+  --brand-text: #ff9aa1; --danger: #ff9aa1; --inverse: #0f0809;
+  --field-bg: #1a1112; --shadow: rgba(0, 0, 0, 0.6);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --ink: #f3e6e7; --ink-soft: #c9b1b4; --paper: #1a1112; --card: #261a1c;
+    --line: #4a3336; --brand: #c0303a; --brand-dark: #8f1f27;
+    --brand-text: #ff9aa1; --danger: #ff9aa1; --inverse: #0f0809;
+    --field-bg: #1a1112; --shadow: rgba(0, 0, 0, 0.6);
+  }
+}
+/* lab6.css дахь тогтмол өнгийг токен руу шилжүүлнэ */
+.input, .select, .textarea { background: var(--field-bg); }
+.site-footer, .tooltip-text, .device-bar { background: var(--inverse); }
+@media (min-width: 768px) and (max-width: 1023px) { .main-nav { background: var(--inverse); } }
+.device-btn[aria-pressed="true"] { color: var(--on-accent); }
+.btn-secondary { color: var(--brand-text); }
+.btn-secondary:hover { background: var(--card); }
+.group-title, .grade-table th { color: var(--brand-text); }
+
+/* Dark mode товч */
+.theme-toggle {
+  display: inline-flex; justify-content: center; align-items: center;
+  width: 44px; height: 44px; padding: 0;
+  color: #fff; background: transparent;
+  border: 2px solid #fff; border-radius: 6px; cursor: pointer;
+}
+.theme-toggle svg { width: 22px; height: 22px; fill: currentColor; transition: transform var(--dur) var(--ease); }
+.theme-toggle[aria-pressed="true"] { color: var(--on-accent); background: var(--accent); border-color: var(--accent); }
+.theme-toggle[aria-pressed="true"] svg { transform: rotate(180deg); }
+.theme-toggle:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* ===== 2. Хүртээмжтэй hover / focus: transition + transform ===== */
+.btn, .nav-link {
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background-color var(--dur);
+}
+.btn:focus-visible { transform: translateY(-2px); box-shadow: 0 6px 14px var(--shadow); }
+.nav-link:focus-visible { transform: translateX(4px); }
+.btn:active { transform: translateY(0) scale(0.97); }
+@media (hover: hover) {                       /* мэдрэгч дэлгэцэнд "наалдсан hover" гарахгүй */
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 14px var(--shadow); }
+  .nav-link:hover { transform: translateX(4px); }
+}
+
+/* ===== 3. 3D flip card ===== */
+.showcase { margin-top: 2.5rem; }
+.sub-title { margin: 1.75rem 0 0.5rem; font-family: var(--font-head); font-size: 1.05rem; }
+.flip-grid {
+  display: grid; gap: var(--gap); margin: 0; padding: 0; list-style: none;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+}
+.flip { perspective: 900px; }
+.flip-btn {
+  display: block; width: 100%; height: 160px; padding: 0;
+  font: inherit; color: inherit; text-align: center;
+  background: none; border: 0; border-radius: var(--radius); cursor: pointer;
+  transition: transform var(--dur) var(--ease);
+}
+.flip-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; transform: translateY(-4px); }
+@media (hover: hover) { .flip-btn:hover { transform: translateY(-4px); } }
+.flip-inner {
+  position: relative; display: block; width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s var(--ease);
+}
+.flip-btn[aria-pressed="true"] .flip-inner { transform: rotateY(180deg); }
+.flip-face {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0.4rem;
+  padding: 1rem; border: 1px solid var(--line); border-radius: var(--radius);
+  -webkit-backface-visibility: hidden; backface-visibility: hidden;
+}
+.flip-front { background: var(--card); }
+.flip-back { color: #fff; background: var(--brand); transform: rotateY(180deg); }
+
+/* ===== 4. @keyframes + --i stagger ===== */
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+.stagger > * {
+  animation: rise 0.5s var(--ease) both;
+  animation-delay: calc(var(--i, 0) * var(--stagger));
+}
+
+/* ===== 5. Media: video, iframe, SVG ===== */
+.media { margin: 1.5rem 0 0; }
+.media video { display: block; width: 100%; background: #000; border-radius: var(--radius); }
+.media figcaption { margin-top: 0.5rem; font-size: 0.9rem; color: var(--ink-soft); }
+.embed { position: relative; aspect-ratio: 16 / 9; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.chart { display: block; width: 100%; max-width: 420px; color: var(--ink); }
+.chart text { fill: currentColor; font: 12px var(--font-body); }
+.bar-rect {
+  fill: var(--brand-text);
+  transform-box: fill-box; transform-origin: bottom;
+  animation: grow 0.6s var(--ease) both;
+  animation-delay: calc(var(--i, 0) * var(--stagger));
+}
+
+/* ===== 6. Хөдөлгөөнийг хязгаарлах ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .btn:hover, .btn:focus-visible, .btn:active,
+  .nav-link:hover, .nav-link:focus-visible,
+  .flip-btn:hover, .flip-btn:focus-visible { transform: none; }
+  /* Эргэлтийн оронд зөвхөн нүүр солигдоно */
+  .flip-inner, .flip-btn[aria-pressed="true"] .flip-inner { transform: none; }
+  .flip-back { transform: none; visibility: hidden; }
+  .flip-btn[aria-pressed="true"] .flip-front { visibility: hidden; }
+  .flip-btn[aria-pressed="true"] .flip-back { visibility: visible; }
+}
