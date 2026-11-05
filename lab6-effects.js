@@ -1,8 +1,13 @@
-// 3D flip kart: tovch darah esvel Enter / Space-eer ergüülne
+// 3D flip kart: tovch darah esvel Enter / Space-eer ergüülne,
+// hulgana kartnaas holdoh (esvel Tab-aar gadagsh garah) uyd butsna
 document.querySelectorAll('.flip-btn').forEach(btn => {
+  const setFlipped = flipped => btn.setAttribute('aria-pressed', flipped);
+
   btn.addEventListener('click', () => {
-    btn.setAttribute('aria-pressed', btn.getAttribute('aria-pressed') !== 'true');
+    setFlipped(btn.getAttribute('aria-pressed') !== 'true');
   });
+  btn.addEventListener('mouseleave', () => setFlipped(false));
+  btn.addEventListener('blur', () => setFlipped(false));
 });
 
 // Dark mode

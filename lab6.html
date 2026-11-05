@@ -220,26 +220,45 @@
           <h3 class="sub-title">3D flip карт</h3>
           <p class="lead">Карт дээр дарж эсвэл Enter / Space дарж эргүүлнэ.</p>
           <ul class="flip-grid stagger">
-            <li class="flip" style="--i:0">
+            <li class="flip" style="--i:0; --c:#e34f26">
               <button class="flip-btn" type="button" aria-pressed="false">
                 <span class="flip-inner">
-                  <span class="flip-face flip-front"><strong>HTML5 / CSS3</strong><small>Эргүүлэх</small></span>
+                  <span class="flip-face flip-front">
+                    <svg class="flip-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/>
+                    </svg>
+                    <strong>HTML5 / CSS3</strong>
+                    <small>Эргүүлэх</small>
+                  </span>
                   <span class="flip-face flip-back">Хуудасны бүтэц, загвар, responsive зохиомж</span>
                 </span>
               </button>
             </li>
-            <li class="flip" style="--i:1">
+            <li class="flip" style="--i:1; --c:#a16207">
               <button class="flip-btn" type="button" aria-pressed="false">
                 <span class="flip-inner">
-                  <span class="flip-face flip-front"><strong>JavaScript</strong><small>Эргүүлэх</small></span>
+                  <span class="flip-face flip-front">
+                    <svg class="flip-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path d="M9 4C7 4 6 5 6 7v3c0 1-1 2-2 2 1 0 2 1 2 2v3c0 2 1 3 3 3M15 4c2 0 3 1 3 3v3c0 1 1 2 2 2-1 0-2 1-2 2v3c0 2-1 3-3 3"/>
+                    </svg>
+                    <strong>JavaScript</strong>
+                    <small>Эргүүлэх</small>
+                  </span>
                   <span class="flip-face flip-back">Хуудсыг амьдруулж, хэрэглэгчийн үйлдэлд хариу өгнө</span>
                 </span>
               </button>
             </li>
-            <li class="flip" style="--i:2">
+            <li class="flip" style="--i:2; --c:#4f5b93">
               <button class="flip-btn" type="button" aria-pressed="false">
                 <span class="flip-inner">
-                  <span class="flip-face flip-front"><strong>PHP &amp; MySQL</strong><small>Эргүүлэх</small></span>
+                  <span class="flip-face flip-front">
+                    <svg class="flip-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <ellipse cx="12" cy="6" rx="8" ry="3"/>
+                      <path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>
+                    </svg>
+                    <strong>PHP &amp; MySQL</strong>
+                    <small>Эргүүлэх</small>
+                  </span>
                   <span class="flip-face flip-back">Серверийн тал, өгөгдлийн сантай ажиллана</span>
                 </span>
               </button>
@@ -264,7 +283,16 @@
             <figcaption>Хичээл тус бүрийн дүн (дээд оноо 100).</figcaption>
           </figure>
 
-          
+          <h3 class="sub-title">Видео (хадмалтай)</h3>
+          <figure class="media">
+            <video controls preload="metadata" playsinline>
+              <source src="media/intro.mp4" type="video/mp4">
+              <track kind="captions" src="media/intro.mn.vtt" srclang="mn" label="Монгол" default>
+              <p>Таны хөтөч видеог дэмжихгүй байна. <a href="media/intro.mp4">Видеог татаж авах</a></p>
+            </video>
+            <figcaption>Танилцуулга видео. Автоматаар тоглохгүй, хадмал асаалттай.</figcaption>
+          </figure>
+
           <h3 class="sub-title">Хичээлийн видео (YouTube)</h3>
           <figure class="media">
             <div class="embed">
@@ -277,7 +305,7 @@
                 allow="fullscreen"
                 allowfullscreen></iframe>
             </div>
-            <figcaption>Дээрх 3D flip картын тухай заавар. <a href="https://www.youtube.com/watch?v=SdC0DDdT_rM">YouTube дээр нээх</a></figcaption>
+            <figcaption>Дээрх 3D flip картын тухай заавар. <a href="https://www.youtube.com/watch?v=kVqTxoO24G0">YouTube дээр нээх</a></figcaption>
           </figure>
         </section>
       </article>
