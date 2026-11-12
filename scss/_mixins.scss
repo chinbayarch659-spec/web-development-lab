@@ -1,0 +1,21 @@
+@use "sass:map";
+@use "tokens" as t;
+
+@mixin respond($bp) {
+  @media (min-width: #{map.get(t.$breakpoints, $bp)}) { @content; }
+}
+// $from <= өргөн < $to
+@mixin respond-only($from, $to) {
+  @media (min-width: #{map.get(t.$breakpoints, $from)}) and (max-width: #{map.get(t.$breakpoints, $to) - 1px}) { @content; }
+}
+@mixin flex-center($display: flex) {
+  display: $display; justify-content: center; align-items: center;
+}
+// Мэдрэгч дэлгэцэнд "наалдсан hover" гаргахгүй
+@mixin on-hover { @media (hover: hover) { &:hover { @content; } } }
+@mixin focus-ring($offset: 2px) { outline: 3px solid var(--accent); outline-offset: $offset; }
+@mixin lift-transition {
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background-color var(--dur);
+}
+@mixin custom-props($map) { @each $k, $v in $map { --#{$k}: #{$v}; } }
+@mixin dark-theme { color-scheme: dark; @include custom-props(t.$dark); }

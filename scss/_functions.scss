@@ -1,0 +1,11 @@
+@use "sass:math";
+@use "sass:color";
+
+// px -> rem (суурь 16px)
+@function rem($px, $base: 16) { @return math.div($px, $base) * 1rem; }
+
+// Дэвсгэр өнгөнөөс хамаарч уншигдахуйц бичгийн өнгө сонгоно
+@function contrast($bg, $light: #fff, $dark: #000) {
+  @if color.channel($bg, "lightness", $space: hsl) > 50% { @return $dark; }
+  @return $light;
+}

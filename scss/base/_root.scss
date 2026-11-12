@@ -1,0 +1,13 @@
+@use "../abstracts" as *;
+
+:root {
+  color-scheme: light;
+  @include custom-props($light);
+  @include custom-props($misc);
+  @each $k, $v in $radius { --radius-#{$k}: #{$v}; }
+}
+// Гараар сонгосон эсвэл OS-ийн тохиргоо: нэг mixin-ээр хоёуланд нь
+:root[data-theme="dark"] { @include dark-theme; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) { @include dark-theme; }
+}

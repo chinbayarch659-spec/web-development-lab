@@ -1,0 +1,11 @@
+@use "../abstracts" as *;
+
+.theme-toggle {
+  @include flex-center(inline-flex);
+  width: $tap; height: $tap; padding: 0; color: #fff; background: transparent;
+  border: 2px solid #fff; border-radius: var(--radius-sm); cursor: pointer;
+  &__icon { width: rem(22); height: rem(22); fill: currentColor; transition: transform var(--dur) var(--ease); }
+  &[aria-pressed="true"] { color: var(--on-accent); background: var(--accent); border-color: var(--accent); }
+  &[aria-pressed="true"] &__icon { transform: rotate(180deg); }
+  &:focus-visible { @include focus-ring; }
+}

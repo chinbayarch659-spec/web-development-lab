@@ -1,0 +1,37 @@
+@use "sass:map";
+@use "functions" as fn;
+
+$breakpoints: (md: 768px, lg: 1024px, xl: 1280px);
+
+$colors: (
+  ink: #2b1417, ink-soft: #6b5557, paper: #f5eded, card: #fff, line: #e8d2d4,
+  brand: #b3202a, brand-dark: #85151d, accent: #f2b134, danger: #85151d,
+);
+
+// Өнгөнөөс гарсан токенууд
+$derived: (
+  brand-text: var(--brand),
+  inverse: map.get($colors, ink),
+  on-accent: fn.contrast(map.get($colors, accent), #fff, map.get($colors, ink)),
+  field-bg: #fff,
+  shadow: rgba(43, 20, 23, 0.25),
+);
+$light: map.merge($colors, $derived);
+
+$dark: (
+  ink: #f3e6e7, ink-soft: #c9b1b4, paper: #1a1112, card: #261a1c, line: #4a3336,
+  brand: #c0303a, brand-dark: #8f1f27, brand-text: #ff9aa1, danger: #ff9aa1,
+  inverse: #0f0809, field-bg: #1a1112, shadow: rgba(0, 0, 0, 0.6),
+);
+
+$radius: (sm: 6px, md: 10px, lg: 12px, xl: 14px, pill: 999px, circle: 50%);
+
+$misc: (
+  gap: 1rem, dur: 0.25s, ease: cubic-bezier(0.2, 0.7, 0.2, 1), stagger: 120ms,
+  font-head: ("Lora", Georgia, serif), font-body: ("Manrope", system-ui, sans-serif),
+);
+
+$tap: fn.rem(44);   // хуруугаар дарах доод хэмжээ
+
+$spacers: (0: 0, 1: 0.25rem, 2: 0.5rem, 3: 1rem, 4: 1.5rem, 5: 2.5rem);
+$text-colors: (brand, accent, ink-soft, danger);

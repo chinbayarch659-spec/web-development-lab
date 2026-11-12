@@ -1,0 +1,14 @@
+@use "sass:map";
+@use "../abstracts" as *;
+
+.btn {
+  min-height: rem(48); padding: 0.7rem 1.6rem; font: inherit; font-weight: 700;
+  border: 2px solid var(--brand); border-radius: var(--radius-sm); cursor: pointer;
+  @include lift-transition;
+  &--primary { color: contrast(map.get($colors, brand), #fff, #000); background: var(--brand); &:hover { background: var(--brand-dark); } }
+  &--secondary { color: var(--brand-text); background: transparent; &:hover { background: var(--card); } }
+  &:focus-visible { @include focus-ring; transform: translateY(-2px); box-shadow: 0 6px 14px var(--shadow); }
+  &:active { transform: translateY(0) scale(0.97); }
+  @include on-hover { transform: translateY(-2px); box-shadow: 0 6px 14px var(--shadow); }
+  @include respond(md) { min-height: 0; }
+}

@@ -1,0 +1,17 @@
+// Лаб 7: lab5.css + lab6.css -> SCSS (BEM)
+@use "base/root";
+@use "base/base";
+@use "layout/layout";
+@use "components/header";
+@use "components/nav";
+@use "components/theme-toggle";
+@use "components/form";
+@use "components/btn";
+@use "components/tooltip";
+@use "components/card";
+@use "components/footer";
+@use "components/media";
+@use "components/flip";
+@use "components/device";
+@use "utilities/utilities";
+@use "base/motion";

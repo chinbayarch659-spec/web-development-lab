@@ -1,0 +1,12 @@
+{
+  "name": "lab7-scss",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "sass --watch --no-source-map scss/main.scss:css/main.css",
+    "build:css": "sass --no-source-map scss/main.scss:css/main.css",
+    "build": "sass --style=compressed --no-source-map scss/main.scss:css/main.min.css",
+    "migrate": "node migrate.js"
+  },
+  "devDependencies": { "sass": "^1.80.0" }
+}

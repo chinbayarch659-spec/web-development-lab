@@ -1,0 +1,51 @@
+@use "../abstracts" as *;
+
+// Hamburger товч
+.nav-toggle {
+  @include flex-center(inline-flex);
+  gap: 0.6rem; min-width: $tap; height: $tap; padding: 0 0.6rem;
+  font: inherit; font-weight: 700; color: #fff; background: transparent;
+  border: 2px solid #fff; border-radius: var(--radius-sm); cursor: pointer;
+  @include respond-only(md, lg) { padding: 0 1rem; border-radius: var(--radius-pill); }
+  @include respond(lg) { display: none; }
+  &:focus-visible { @include focus-ring; }
+
+  &__bars { display: flex; flex-direction: column; gap: 5px; }
+  &__text {
+    display: none;
+    @include respond-only(md, lg) { display: inline; }
+  }
+  &__bar { display: block; width: rem(22); height: 2px; background: #fff; transition: transform 0.2s, opacity 0.2s; }
+  &[aria-expanded="true"] &__bar {
+    &:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    &:nth-child(2) { opacity: 0; }
+    &:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  }
+}
+
+// Цэс: утсанд нуугдсан, таблетад popover, компьютерт хэвтээ
+.nav {
+  display: none; flex: 1 0 100%;
+  &--open { display: block; }
+  @include respond-only(md, lg) {
+    position: absolute; top: calc(100% + 0.5rem); right: 2rem; z-index: 10;
+    width: 240px; padding: 0.5rem; background: var(--inverse);
+    border: 2px solid var(--accent); border-radius: var(--radius-md);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  }
+  @include respond(lg) { display: block; flex: 0 0 auto; }
+
+  &__list {
+    display: flex; flex-direction: column; gap: 0.25rem; margin: 0; padding: 0; list-style: none;
+    @include respond(lg) { flex-direction: row; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 0.5rem; }
+  }
+  &__link {
+    display: flex; align-items: center; min-height: $tap; padding: 0.5rem 1rem;
+    color: #fff; text-decoration: none; border-radius: var(--radius-sm);
+    @include lift-transition;
+    &:hover, &:focus-visible { background: var(--brand-dark); outline: 2px solid var(--accent); }
+    &:focus-visible { transform: translateX(4px); }
+    @include on-hover { transform: translateX(4px); }
+    @include respond(lg) { min-height: 0; }
+  }
+}

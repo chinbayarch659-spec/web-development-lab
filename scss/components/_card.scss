@@ -1,0 +1,18 @@
+@use "../abstracts" as *;
+
+.sidebar {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--gap);
+  @include respond(md) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+  @include respond(lg) { display: flex; flex-direction: column; gap: 1.5rem; position: sticky; top: 1rem; }
+}
+.card {
+  min-width: 0; padding: 1rem; background: var(--card);
+  border: 1px solid var(--line); border-radius: var(--radius-md);
+  @include respond(md) { padding: 1.25rem; }
+}
+.interest-list { margin: 0; padding-left: 1.2rem; }
+.grade-table {
+  width: 100%; border-collapse: collapse;
+  th, td { padding: 0.5rem; text-align: left; border-bottom: 1px solid var(--line); &:last-child { text-align: right; } }
+  th { color: var(--brand-text); }
+}

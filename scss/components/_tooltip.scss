@@ -1,0 +1,14 @@
+@use "../abstracts" as *;
+
+.tooltip {
+  position: relative; @include flex-center(inline-flex);
+  width: 1.4rem; height: 1.4rem; font-size: 0.8rem; color: #fff;
+  background: var(--brand); border-radius: var(--radius-circle); cursor: help;
+  &__text {
+    position: absolute; bottom: 140%; left: 50%; z-index: 5;
+    width: min(190px, 60vw); padding: 0.5rem; transform: translateX(-50%);
+    font-weight: 400; color: #fff; background: var(--inverse); border-radius: var(--radius-sm);
+    visibility: hidden; opacity: 0; transition: opacity 0.15s;
+  }
+  &:hover &__text, &:focus &__text { visibility: visible; opacity: 1; }
+}

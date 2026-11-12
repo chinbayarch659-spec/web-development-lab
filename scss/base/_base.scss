@@ -1,0 +1,14 @@
+@use "../abstracts" as *;
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+img, svg, video { max-width: 100%; height: auto; }
+
+.app {
+  margin: 0; min-height: 100vh;
+  font-family: var(--font-body); color: var(--ink); background: var(--paper);
+  line-height: 1.6; overflow-wrap: anywhere;
+  display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr auto;
+}
+.section-title { margin: 0 0 0.5rem; font-family: var(--font-head); font-size: 1.25rem; }
+.lead { margin: 0 0 1.25rem; color: var(--ink-soft); }

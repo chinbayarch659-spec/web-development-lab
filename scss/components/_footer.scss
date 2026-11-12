@@ -1,0 +1,14 @@
+@use "../abstracts" as *;
+
+.footer {
+  @include flex-center; flex-direction: column; gap: 0.75rem; padding: 1rem;
+  text-align: center; color: #fff; background: var(--inverse);
+  p { margin: 0; }
+  @include respond(md) { flex-direction: row; justify-content: space-between; padding: 1rem 2rem; text-align: left; }
+
+  &__links {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1.25rem; margin: 0; padding: 0; list-style: none;
+    @include respond(md) { gap: 1.25rem; }
+    a { display: inline-block; padding: 0.5rem 0; color: var(--accent); }
+  }
+}

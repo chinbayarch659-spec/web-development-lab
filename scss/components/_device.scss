@@ -1,0 +1,32 @@
+@use "../abstracts" as *;
+
+.device-bar {
+  display: none; position: fixed; left: 50%; bottom: 1rem; z-index: 100; transform: translateX(-50%);
+  align-items: center; gap: 0.25rem; padding: 0.35rem;
+  background: var(--inverse); border-radius: var(--radius-pill); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  @include respond(md) { display: flex; }
+
+  &__btn {
+    min-height: rem(40); padding: 0 1rem; font: inherit; font-size: 0.9rem; font-weight: 700;
+    color: #fff; background: transparent; border: 0; border-radius: var(--radius-pill); cursor: pointer;
+    &:hover { background: var(--brand-dark); }
+    &[aria-pressed="true"] { color: var(--on-accent); background: var(--accent); }
+    &:focus-visible { outline: 3px solid #fff; outline-offset: 1px; }
+  }
+}
+.device-stage {
+  display: none;
+  &__frame {
+    max-width: 100%; height: calc(100vh - 6.5rem); min-height: 420px; background: #fff;
+    border: 0; border-radius: var(--radius-lg); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  }
+}
+.app--preview {
+  .header, .layout, .footer { display: none; }
+  .device-stage {
+    display: flex; justify-content: center; min-height: 100vh; padding: 1rem 1rem 5.5rem; background: #d9d2d3;
+  }
+  .device-bar { display: flex; }
+}
+@include respond(md) { html:not(.in-frame) .footer { padding-bottom: 4.5rem; } }
+html.in-frame .device-bar { display: none !important; }

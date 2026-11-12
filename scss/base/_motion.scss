@@ -1,0 +1,12 @@
+// Хамгийн сүүлд импортолно: бусад дүрмийг дарах ёстой
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .btn:hover, .btn:focus-visible, .btn:active,
+  .nav__link:hover, .nav__link:focus-visible,
+  .flip-card__btn:hover, .flip-card__btn:focus-visible { transform: none; }
+  // Эргэлтийн оронд зөвхөн нүүр солигдоно
+  .flip-card__inner, .flip-card__btn[aria-pressed="true"] .flip-card__inner { transform: none; }
+  .flip-card__face--back { transform: none; visibility: hidden; }
+  .flip-card__btn[aria-pressed="true"] .flip-card__face--front { visibility: hidden; }
+  .flip-card__btn[aria-pressed="true"] .flip-card__face--back { visibility: visible; }
+}
